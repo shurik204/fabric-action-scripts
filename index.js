@@ -11249,7 +11249,7 @@ async function generateChangelog(github, workflow_id, commit_regex) {
     let request = await github.actions.listWorkflowRuns({
         ...baseRequest,
         workflow_id,
-        branch: lib_github.context.ref.split("/").pop(),
+        branch: lib_github.context.ref.replace(/^refs\/[a-z]*\//, ""),
         per_page: 1,
         status: "success",
     });
